@@ -10,3 +10,4 @@ if ( file_exists( $autoload ) ) {
 }
 
 WP_CLI::add_command( 'search-replace', 'Search_Replace_Command' );
+WP_CLI::add_command( 'search', 'Search_Command' );
