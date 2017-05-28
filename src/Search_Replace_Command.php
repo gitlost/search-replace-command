@@ -11,6 +11,7 @@ class Search_Replace_Command extends WP_CLI_Command {
 	private $skip_columns;
 	private $include_columns;
 
+	// Overridable message strings.
 	protected $replacements_col_header = 'Replacements';
 	protected $replacements_to_be_made = array( '%d replacement to be made.', '%d replacements to be made.' );
 
