@@ -11,6 +11,9 @@ class Search_Replace_Command extends WP_CLI_Command {
 	private $skip_columns;
 	private $include_columns;
 
+	protected $replacements_col_header = 'Replacements';
+	protected $replacements_to_be_made = array( '%d replacement to be made.', '%d replacements to be made.' );
+
 	/**
 	 * Search/replace strings in the database.
 	 *
@@ -232,7 +235,7 @@ class Search_Replace_Command extends WP_CLI_Command {
 		}
 
 		$table = new \cli\Table();
-		$table->setHeaders( array( 'Table', 'Column', 'Replacements', 'Type' ) );
+		$table->setHeaders( array( 'Table', 'Column', $this->replacements_col_header, 'Type' ) );
 		$table->setRows( $report );
 		$table->display();
 
@@ -248,7 +251,7 @@ class Search_Replace_Command extends WP_CLI_Command {
 			WP_CLI::success( $success_message );
 		}
 		else {
-			$success_message = ( 1 === $total ) ? '%d replacement to be made.' : '%d replacements to be made.';
+			$success_message = $this->replacements_to_be_made[ 1 === $total ? 0 : 1 ];
 			WP_CLI::success( sprintf( $success_message, $total ) );
 		}
 	}
